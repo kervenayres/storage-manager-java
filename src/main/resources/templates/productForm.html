@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Product Form</title>
+    <title>Formulário de Produtos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-    <h1>Product Form</h1>
-    <form th:action="@{${product.id} != null ? '/products/update/' + ${product.id} : '/products'}" th:object="${product}" method="post">
-        <input type="hidden" th:field="*{id}" />
-        <label>Name: <input type="text" th:field="*{name}" /></label>
-        <label>Description: <input type="text" th:field="*{description}" /></label>
-        <label>Price: <input type="text" th:field="*{price}" /></label>
-        <label>Quantity: <input type="text" th:field="*{quantity}" /></label>
-        <button type="submit" th:text="${product.id} != null ? 'Update' : 'Create'">Create</button>
-    </form>
-    <a href="/products">Back to list</a>
+    <div class="container mt-5">
+        <header class="text-center mb-4">
+            <h1>Formulário de Produtos</h1>
+        </header>
+        <form th:action="@{${product.id} != null ? '/products/update/' + ${product.id} : '/products'}"
+            th:object="${product}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" th:field="*{name}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" th:field="*{description}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text" id="price" th:field="*{price}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="text" id="quantity" th:field="*{quantity}" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-success btn-block"
+                th:text="${product.id} != null ? 'Update' : 'Create'">Create</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/products" class="btn btn-primary">Back to list</a>
+        </div>
+    </div>
 </body>
+
 </html>
